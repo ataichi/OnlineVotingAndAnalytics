@@ -33,9 +33,9 @@ public class Login extends HttpServlet {
             
 			PostgreSQLClient client = new PostgreSQLClient();
 			if(client.doesVoterExist(email, password)) {
-				List presidentlist = client.getPresidentCandidates(1);
-				List vicepresidentlist = client.getPresidentCandidates(2);
-				List senatorlist = client.getPresidentCandidates(3);
+				List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
+				List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
+				List<CandidateBean> senatorlist = client.getPresidentCandidates(3);
 				
 				session.setAttribute("presidentlist", presidentlist);
 				session.setAttribute("vicepresidentlist", vicepresidentlist);

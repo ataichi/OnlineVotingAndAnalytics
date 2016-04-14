@@ -24,7 +24,7 @@ public class Vote extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			request.getAttribute("");
+			request.getAttribute("selectpres");
 			
 			//check if nakavote na
 			request.setAttribute(prescheck, );
