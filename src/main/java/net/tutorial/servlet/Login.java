@@ -1,6 +1,6 @@
-import java.io.IOException;
 package net.tutorial.servlet;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,14 +24,16 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            String email = (String) request.getParameter("email");
+			String password = (String) request.getParameter("password");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Login</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>email " + email + "</h1>");
+            out.println("<h1>password " + password + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
