@@ -1,4 +1,4 @@
-package Servlet;
+package service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import bean.Candidate;
 
 /**
  *
@@ -26,6 +27,21 @@ public class PostgreSQLClient {
         }
     }
 
+	public String getPositionOfCandidate(candidateID){
+		String selectquery = "SELECT p.PositionName FROM position p, candidate c, electionlist el WHERE c.CandidateID = el.CandidateID and el.PositionID = p.PositionID and c.CandidateID = '" + candidateID + "';";
+		Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+		try
+		{
+            ps = connection.prepareStatement(selectquery);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+             	return rs.getString(1);
+            }
+            connection.close();
+	}
+	
 	public List<Candidate> getPresidentCandidates(String positionID){
 		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
