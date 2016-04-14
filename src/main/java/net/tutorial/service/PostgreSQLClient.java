@@ -26,30 +26,27 @@ public class PostgreSQLClient {
         }
     }
 
-	public Account getResults(String email, String password) throws Exception {
-        String selectquery = "SELECT * FROM account WHERE email = '" + email + "' and password = '" + password + "';";
+	public List<Candidate> getPresidentCandidates(String positionID){
+		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
-
-        try {
+		try {
             connection = getConnection();
             statement = connection.prepareStatement(selectquery);
             rs = statement.executeQuery();
 
-            Account account = new Account();
-			account.setTheresareturnedvalue(0);
+            Candidate candidate = new Candidate();
+			//candidate.setTheresareturnedvalue(0);
             if ( rs.next() ) {
-                account.setFullname(rs.getString(1));
-				account.setEmail(rs.getString(2));
-				account.setAccountno(rs.getString(3));
-				account.setPassword(rs.getString(4));
-				account.setCurrency(rs.getString(5));
-				account.setCurrentbalance(rs.getString(6));
-				account.setAvailablebalance(rs.getString(7));
-				account.setTheresareturnedvalue(1);
+                candidate.setFirstName(rs.getString(1));
+				candidate.setMiddleName(rs.getString(2));
+				candidate.setLastName(rs.getString(3));
+				candidate.setNickname(rs.getString(4));
+				candidate.setEducationalBGID(rs.getString(8));
+				//candidate.setTheresareturnedvalue(1);
             }
-            return account;
+            return candidate;
         } finally {
             if (rs != null) {
                 rs.close();
@@ -61,7 +58,7 @@ public class PostgreSQLClient {
                 connection.close();
             }
         }
-    }
+	}
 
     public boolean doesVoterExist(String email, String password) {
         String selectquery = "SELECT * FROM voter WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
