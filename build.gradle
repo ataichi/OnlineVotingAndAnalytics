@@ -3,7 +3,7 @@ apply plugin: 'java'
 apply plugin: 'war'
 
 war {
-	archiveName 'webapp.war'
+	archiveName 'Hackathon.war'
 }
 
 repositories {
