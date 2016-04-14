@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.tutorial.service.PostgreSQLClient;
 
 @WebServlet(urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
@@ -24,18 +25,27 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+			
+			HttpSession session = request.getSession();
+			
             String email = (String) request.getParameter("email");
 			String password = (String) request.getParameter("password");
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>email " + email + "</h1>");
-            out.println("<h1>password " + password + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+			PostgreSQLClient client = new PostgreSQLClient();
+			if(client.doesVoterExist(email, password)) {
+				List presidentlist = client.getPresidentCandidates(1);
+				List vicepresidentlist = client.getPresidentCandidates(2);
+				List senatorlist = client.getPresidentCandidates(3);
+				
+				session.setAttribute("presidentlist", presidentlist);
+				session.setAttribute("vicepresidentlist", vicepresidentlist);
+				session.setAttribute("senatorlist", senatorlist);
+				
+				response.sendRedirect("home.jsp");
+			}
+			else {
+				response.sendRedirect("login.jsp")
+			}
         }
     }
 
