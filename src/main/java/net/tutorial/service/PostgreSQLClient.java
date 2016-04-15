@@ -28,6 +28,8 @@ public class PostgreSQLClient {
         }
     }
 
+	public 
+	
 	public String getPoliticalParty(int candidateID) throws Exception {
 		String selectquery = "SELECT pp.PoliticalPartyName FROM politicalparty pp, electionlist el, candidate c WHERE c.CandidateID = el.ElectionList and el.PoliticalPartyID = pp.PoliticalPartyID and c.candidateID = '" + candidateID +"';";
 		Connection connection = null;
@@ -93,7 +95,7 @@ public class PostgreSQLClient {
 	}
 
     public boolean doesVoterExist(String email, String password) throws Exception {
-        String selectquery = "SELECT * FROM voter WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
+        String selectquery = "SELECT * FROM voter WHERE EmailAddress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -112,7 +114,7 @@ public class PostgreSQLClient {
     }
 	
 	public boolean doesCandidateExist(String email, String password)throws Exception {
-        String selectquery = "SELECT * FROM candidate WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
+        String selectquery = "SELECT * FROM candidate WHERE EmailAddress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -160,8 +162,24 @@ public class PostgreSQLClient {
      private void createTables() throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
-        String createquery1 = "";
-        String insertquery1 = "";
+        String createquery1 = 
+		"CREATE TABLE  IF NOT EXISTS candidate  (" +
+		"CandidateID  int(11) NOT NULL AUTO_INCREMENT," +
+   "FirstName  varchar(45) NOT NULL," +
+   "MiddleName  varchar(45) DEFAULT NULL,"+
+   "LastName  varchar(45) NOT NULL,"+
+   "NickName  varchar(45) NOT NULL,"+
+   "Birthday  date DEFAULT NULL,"+
+   "Birthplace  varchar(100) DEFAULT NULL,"+
+   "Gender  varchar(45) NOT NULL,"+
+   "ElectionListID  int(11) NOT NULL,"+
+  "PRIMARY KEY (CandidateID),"+
+  "UNIQUE KEY  CandidateID_UNIQUE  (CandidateID),"+
+  "KEY  ElectionListID_idx  (ElectionListID),"+
+  "CONSTRAINT  ElectionListID2  FOREIGN KEY (ElectionListID) REFERENCES  electionlist  (ElectionListID) ON DELETE NO ACTION ON UPDATE NO ACTION)";
+  
+        String insertquery1 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
+		/*
 		String createquery2 = "";
         String insertquery2 = "";
 		String createquery3 = "";
@@ -186,14 +204,14 @@ public class PostgreSQLClient {
         String insertquery12 = "";
 		String createquery13 = "";
         String insertquery13 = "";
-		
+		*/
         try {
             connection = getConnection();
             statement = connection.prepareStatement(createquery1);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery1);
             statement.executeUpdate();
-			statement = connection.prepareStatement(createquery2);
+			/*statement = connection.prepareStatement(createquery2);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery2);
             statement.executeUpdate();
@@ -240,7 +258,7 @@ public class PostgreSQLClient {
 			statement = connection.prepareStatement(createquery13);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery13);
-            statement.executeUpdate();
+            statement.executeUpdate();*/
         } finally {
             if (statement != null) {
                 statement.close();
