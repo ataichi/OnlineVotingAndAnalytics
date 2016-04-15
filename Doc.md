@@ -43,7 +43,7 @@ For the different Candidates they can acquire these different data from our appl
 2.Area Population Count
 	  The user should also be able to determine the concentration of people in the area. This would allow the candidate information about the number of votes he or she could be able to acquire in a certain area based on population count
 
-3.Be able to check daily updates on trends
+3.Be able to check daily updates on the voters 
 	The user will be able to check on the updates on the current standing in specific regions and the total statistics of his/her rating
 
 4.Be able to check on the total budget that the candidate is using 
@@ -51,7 +51,10 @@ For the different Candidates they can acquire these different data from our appl
 
 Significance of the application
 
-Our application will be able to deliver real time information on the 
+Our application will be able to deliver real time information on the current standing of the different candidates. We will also be able to give the different candidates information on the different areas such as population, votes per location, Budget and daily updates.
+
+
+
 
  
 
