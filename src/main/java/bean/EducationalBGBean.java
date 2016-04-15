@@ -1,4 +1,4 @@
-public class EducationalBG Bean {
+public class EducationalBGBean {
     private int educationalBGID;
     private int candidateID;
     private int educationalBGLevelID;

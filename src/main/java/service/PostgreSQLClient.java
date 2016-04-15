@@ -45,6 +45,8 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}catch(Exception e){
+		
 		}
 	}
 	
@@ -61,6 +63,8 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}catch(Exception e){
+		
 		}
 	}
 	
@@ -297,7 +301,7 @@ public class PostgreSQLClient {
   "PoliticalPartyID INT NOT NULL PRIMARY KEY,"+
   "PoliticalPartyName varchar(100) NOT NULL "+
 ");";
-		String querysingit2 = "INSERT INTO politicalparty(PoliticalPartyID, PoliticalPartyName) VALUES (1,'UNA'),(2,'PRP'),(3,'PDP-Laban'),(4,'IND'),(5,'LP'),(6,'WPPPMM'),(7,'PMP'),(8,'MKBYN'),(9,'KBL'),(10,'NPC'),(11,'AKBYN'),(12,'AKSYON'),(13,'LAKAS'),(14,'NP');"
+		String querysingit2 = "INSERT INTO politicalparty(PoliticalPartyID, PoliticalPartyName) VALUES (1,'UNA'),(2,'PRP'),(3,'PDP-Laban'),(4,'IND'),(5,'LP'),(6,'WPPPMM'),(7,'PMP'),(8,'MKBYN'),(9,'KBL'),(10,'NPC'),(11,'AKBYN'),(12,'AKSYON'),(13,'LAKAS'),(14,'NP');";
 		
 		String createquery11 = "CREATE TABLE electionlist ( "+
   "ElectionListID INT NOT NULL PRIMARY KEY,"+
