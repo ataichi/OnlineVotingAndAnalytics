@@ -8,6 +8,7 @@ public class CandidateBean {
     private String FirstName;
     private String MiddleName;
     private String LastName;
+	private String Nickname;
     private Date Birthday;
     private String Birthplace;
     private String Gender;
