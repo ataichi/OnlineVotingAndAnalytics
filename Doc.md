@@ -17,8 +17,9 @@ Using postgresql and tradeoff analytics we plan to create an application that ca
 
 Our application will be able to Gather information on the different aspects of an election 
 
- 1. Determining The location of low popularity 
-		
+Each voter will need to have a account registered in the system. Using this account we will able to track the different statistical data that the user provides  
+
+1.Determining The location of low popularity 
 			The candidate Should be able to determine areas where he/she has a low rating using statistical data we should be able to direct the user where he/she should focus campaign 
 
 2.Area Population Count
