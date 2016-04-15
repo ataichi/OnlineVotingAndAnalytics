@@ -43,6 +43,7 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}
 	}
 	
 	public String getPositionOfCandidate(int candidateID) throws Exception {
@@ -58,6 +59,7 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}
 	}
 	
 	public List<CandidateBean> getCandidatesPerPosition(int positionID) throws Exception {
@@ -95,7 +97,7 @@ public class PostgreSQLClient {
 	}
 
     public boolean doesVoterExist(String email, String password) throws Exception {
-        String selectquery = "SELECT * FROM voter WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
+        String selectquery = "SELECT * FROM voter WHERE EmailAddress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -114,7 +116,7 @@ public class PostgreSQLClient {
     }
 	
 	public boolean doesCandidateExist(String email, String password)throws Exception {
-        String selectquery = "SELECT * FROM candidate WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
+        String selectquery = "SELECT * FROM candidate WHERE EmailAddress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
