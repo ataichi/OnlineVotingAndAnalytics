@@ -292,6 +292,12 @@ public class PostgreSQLClient {
 		
         String insertquery10 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
 		
+		String querysingit = "CREATE TABLE politicalparty ("+
+  "PoliticalPartyID` INT NOT NULL PRIMARY KEY,"+
+  "PoliticalPartyName` varchar(100) NOT NULL "+
+");";
+		String querysingit2 = "INSERT INTO politicalparty(PoliticalPartyID, PoliticalPartyName) VALUES (1,'UNA'),(2,'PRP'),(3,'PDP-Laban'),(4,'IND'),(5,'LP'),(6,'WPPPMM'),(7,'PMP'),(8,'MKBYN'),(9,'KBL'),(10,'NPC'),(11,'AKBYN'),(12,'AKSYON'),(13,'LAKAS'),(14,'NP');"
+		
 		String createquery11 = "CREATE TABLE electionlist ( "+
   "ElectionListID INT NOT NULL PRIMARY KEY,"+
   "ElectionDateID INT NOT NULL,"+
@@ -301,11 +307,16 @@ public class PostgreSQLClient {
 " ); "; 
 		String insertquery11 = "INSERT INTO electionlist(ElectionListID, ElectionDateID, PositionID, CandidateID, PoliticalPartyID) VALUES (1,1,1,1,1),(2,1,1,2,2),(3,1,1,3,3),(4,1,1,4,4),(5,1,1,5,5),(6,1,1,6,6),(7,1,2,7,4),(8,1,2,8,1),(9,1,2,9,4),(10,1,2,10,5),(11,1,2,11,4),(12,1,3,12,4),(13,1,3,13,6),(14,1,3,14,4),(15,1,3,15,5),(16,1,3,16,4),(17,1,3,17,4),(18,1,3,18,7),(19,1,3,19,6),(20,1,3,20,5),(21,1,3,21,5),(22,1,3,22,10),(23,1,3,23,5),(24,1,3,24,11),(25,1,3,25,1),(26,1,3,26,1),(27,1,3,27,4),(28,1,3,28,1),(29,1,3,29,12),(30,1,3,30,4),(31,1,3,31,13);";
 		
-		String createquery12 = "";
+		String createquery12 = "CREATE TABLE vote ("+
+  "VoteID INT NOT NULL PRIMARY KEY,"+
+  "ElectionDateID INT NOT NULL,"+
+  "VoterID INT NOT NULL,"+
+  "ElectionListID INT NOT NULL,"+
+  "LastModified timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)"+  
+"); ";
 		
-        String insertquery12 = "";
-		String createquery13 = "";
-        String insertquery13 = "";
+        String insertquery12 = "INSERT INTO vote(VoteID, ElectionDateID, VoterID, ElectionListID, LastModified) VALUES (1,1,1,3,'2016-04-15 10:40:26.879720'),(2,1,2,3,'2016-04-15 10:40:26.915049'),(3,1,3,2,'2016-04-15 10:40:26.915049'),(4,1,4,3,'2016-04-15 10:40:27.025233'),(5,1,5,4,'2016-04-15 10:40:27.025233'),(6,1,6,5,'2016-04-15 10:40:27.025233'),(7,1,7,5,'2016-04-15 10:40:27.026226'),(8,1,8,4,'2016-04-15 10:40:27.026226'),(9,1,9,4,'2016-04-15 10:40:27.026226'),(10,1,10,7,'2016-04-15 10:40:27.027244'),(11,1,11,7,'2016-04-15 10:40:27.027244'),(12,1,12,9,'2016-04-15 10:40:27.027244'),(13,1,13,10,'2016-04-15 10:40:27.027244'),(14,1,14,10,'2016-04-15 10:40:27.028239'),(15,1,15,10,'2016-04-15 10:40:27.028481'),(16,1,16,15,'2016-04-15 10:40:27.028481'),(17,1,17,20,'2016-04-15 10:40:27.028481'),(18,1,18,24,'2016-04-15 10:40:27.028481'),(19,1,19,23,'2016-04-15 10:40:27.028481'),(20,1,20,27,'2016-04-15 10:40:27.029483'),(21,1,21,28,'2016-04-15 10:40:27.029483'),(22,1,22,30,'2016-04-15 10:40:27.029483'),(23,1,23,3,'2016-04-15 10:40:27.029483'),(24,1,24,3,'2016-04-15 10:40:27.029483'),(25,1,25,4,'2016-04-15 10:40:27.029483'),(26,1,26,4,'2016-04-15 10:40:27.029483'),(27,1,27,5,'2016-04-15 10:40:27.029483'),(28,1,28,5,'2016-04-15 10:40:27.030483'),(29,1,29,7,'2016-04-15 10:40:27.030483'),(30,1,30,10,'2016-04-15 10:40:27.030483'),(31,1,31,10,'2016-04-15 10:40:27.030483'),(32,1,32,10,'2016-04-15 10:40:27.030483'),(33,1,33,3,'2016-04-15 10:40:27.030483'),(34,1,34,3,'2016-04-15 10:40:27.030483'),(35,1,35,3,'2016-04-15 10:40:27.030483'),(36,1,36,4,'2016-04-15 10:40:27.031484'),(37,1,37,4,'2016-04-15 10:40:27.031484'),(38,1,38,4,'2016-04-15 10:40:27.031484'),(39,1,39,2,'2016-04-15 10:40:27.031484'),(40,1,40,1,'2016-04-15 10:40:27.031484');";
+		
 		
         try {
             connection = getConnection();
@@ -349,6 +360,10 @@ public class PostgreSQLClient {
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery10);
             statement.executeUpdate();
+			statement = connection.prepareStatement(querysingit);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(querysingit2);
+            statement.executeUpdate();
 			statement = connection.prepareStatement(createquery11);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery11);
@@ -357,10 +372,7 @@ public class PostgreSQLClient {
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery12);
             statement.executeUpdate();
-			statement = connection.prepareStatement(createquery13);
-            statement.executeUpdate();
-            statement = connection.prepareStatement(insertquery13);
-            statement.executeUpdate();
+			
         } finally {
             if (statement != null) {
                 statement.close();
