@@ -24,14 +24,36 @@ public class Vote extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			request.getAttribute("selectpres");
 			
-			//check if nakavote na
-			request.setAttribute(prescheck, );
+			//get selected candidate
+            String pres = (String) request.getParameter("selectpres");
+			String vicepres = (String) request.getParameter("selectvicepres");
+			String sen = (String) request.getParameter("selectsen");
+            
+			//retrieve candidatelist from postgre
+			PostgreClient client = new PostgreClient();
+			List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
+			List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
+			List<CandidateBean> senatorlist = client.getPresidentCandidates(3);
 			
-			request.setAttribute(viceprescheck, );
+			//vote
+			for(int i=0; i<presidentlist.size(); i++) {
+				if(pres.matches(Integer.toString(i++))) { //selected president
+					
+				}
+			}
 			
-			request.setAttribute(senatorialcheck, );
+			for(int i=0; i<vicepresidentlist.size(); i++) {
+				if(vicepres.matches(Integer.toString(i++))) { //selected vice president
+					
+				}
+			}
+			
+			for(int i=0; i<senatorlist.size(); i++) {
+				if(sen.matches(Integer.toString(i++))) { //selected senators 
+					
+				}
+			}
         }
     }
 

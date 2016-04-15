@@ -39,7 +39,7 @@
         <% List<CandidateBean> senatorlist = (List<CandidateBean>) session.getAttribute("senatorlist"); %>
 			<form action=\"Vote\" method=\"post\">
 				<% for (int i = 0; i < senatorlist.size(); i++) { %>
-					<input type=\"radio\" name=\"selectpres\" value=\" <% i++ %> " + onChange=\"this.form.submit()\">");
+					<input type=\"radio\" name=\"selectsen\" value=\" <% i++ %> " + onChange=\"this.form.submit()\">");
 					<a href="ViewProfile.jsp">senatorlist.get(i).getFirstName() + " " + senatorlist.get(i).getLastName()</a>
 					<br>
 				<% } %>
