@@ -14,4 +14,9 @@ dependencies {
 	compile 'org.apache.clerezza.ext:org.json.simple:0.4'
     compile 'org.postgresql:postgresql:9.4.1207.jre7'
     compile 'org.glassfish.main.core:glassfish:4.1.1'
+	compile 'com.ibm.watson.developer_cloud:java-wrapper:1.1.0'
+	compile group: 'com.squareup.okhttp', name: 'okhttp', version:'2.7.0'
+    compile group: 'com.google.code.gson', name: 'gson', version:'2.5'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.4'
+	compile 'com.ibm.watson.developer_cloud:java-sdk:2.8.0'
 }
