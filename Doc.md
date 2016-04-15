@@ -33,7 +33,6 @@ Voters will be able to enter their pre-election vote
 2.View Current Trends 
 Will be able to see the different standings based on pre-election 
 
-
 Use for candidates
 
 For the different Candidates they can acquire these different data from our application in real time 
@@ -48,7 +47,11 @@ For the different Candidates they can acquire these different data from our appl
 	The user will be able to check on the updates on the current standing in specific regions and the total statistics of his/her rating
 
 4.Be able to check on the total budget that the candidate is using 
-	The user will be able to check
+	The user will be able to check his or her budget spending or remaining budget in the different locations 
+
+Significance of the application
+
+Our application will be able to deliver real time information on the 
 
  
 
