@@ -4,15 +4,17 @@ import java.util.Date;
 
 public class CandidateBean {
 
-    private int CandidateID;
+   private int CandidateID;
     private String FirstName;
     private String MiddleName;
     private String LastName;
-	private String Nickname;
+    private String NickName;
     private Date Birthday;
     private String Birthplace;
     private String Gender;
     private int ElectionListID;
+    private String EmailAddress;
+    private String Password;
 
     public int getCandidateID() {
         return CandidateID;
@@ -46,6 +48,14 @@ public class CandidateBean {
         this.LastName = LastName;
     }
 
+    public String getNickName() {
+        return NickName;
+    }
+
+    public void setNickName(String NickName) {
+        this.NickName = NickName;
+    }
+
     public Date getBirthday() {
         return Birthday;
     }
@@ -76,5 +86,21 @@ public class CandidateBean {
 
     public void setElectionListID(int ElectionListID) {
         this.ElectionListID = ElectionListID;
+    }
+
+    public String getEmailAddress() {
+        return EmailAddress;
+    }
+
+    public void setEmailAddress(String EmailAddress) {
+        this.EmailAddress = EmailAddress;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 }

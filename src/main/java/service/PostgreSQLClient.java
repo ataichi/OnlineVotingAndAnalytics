@@ -29,8 +29,6 @@ public class PostgreSQLClient {
             e.printStackTrace(System.err);
         }
     }
-
-	public 
 	
 	public String getPoliticalParty(int candidateID) throws Exception {
 		String selectquery = "SELECT pp.PoliticalPartyName FROM politicalparty pp, electionlist el, candidate c WHERE c.CandidateID = el.ElectionList and el.PoliticalPartyID = pp.PoliticalPartyID and c.candidateID = '" + candidateID +"';";
