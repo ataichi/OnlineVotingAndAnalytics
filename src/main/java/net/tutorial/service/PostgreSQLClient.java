@@ -58,7 +58,7 @@ public class PostgreSQLClient {
             connection.close();
 	}
 	
-	public List<Candidate> getPresidentCandidates(int positionID) throws Exception {
+	public List<Candidate> getCandidatesPerPosition(int positionID) throws Exception {
 		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -129,6 +129,14 @@ public class PostgreSQLClient {
         }
         return false;
     }
+	
+	public boolean voteForCandidate(int CandidateID) {
+		
+	}
+	
+	public List<CandidateBean> getVotedCandidatesPerUser(String email, String password) {
+		
+	}
 
     public static Connection getConnection() throws Exception {
         Map<String, String> env = System.getenv();

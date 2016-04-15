@@ -39,13 +39,13 @@ public class Vote extends HttpServlet {
 			//vote
 			for(int i=0; i<presidentlist.size(); i++) {
 				if(pres.matches(Integer.toString(i++))) { //selected president
-					
+					client.voteForCandidate(presidentlist.get(i)).getCandidateID();
 				}
 			}
 			
 			for(int i=0; i<vicepresidentlist.size(); i++) {
 				if(vicepres.matches(Integer.toString(i++))) { //selected vice president
-					
+					client.voteForCandidate(vicepresidentlist.get(i)).getCandidateID();
 				}
 			}
 			
@@ -54,6 +54,14 @@ public class Vote extends HttpServlet {
 					
 				}
 			}
+			
+			//Retrieve Selected Candidates
+			List<CandidateBean> ballot = client.getBallotPerUser(email, password);
+			session.setAttribute("ballot", ballot);
+			
+			response.setContentType("text/html");
+			response.setStatus(200);
+			request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 

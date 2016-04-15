@@ -33,15 +33,20 @@ public class Login extends HttpServlet {
             
 			PostgreSQLClient client = new PostgreSQLClient();
 			if(client.doesVoterExist(email, password)) {
-				List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
-				List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
-				List<CandidateBean> senatorlist = client.getPresidentCandidates(3);
+				List<CandidateBean> presidentlist = client.getCandidatesPerPosition(1);
+				List<CandidateBean> vicepresidentlist = client.getCandidatesPerPosition(2);
+				List<CandidateBean> senatorlist = client.getCandidatesPerPosition(3);
 				
 				session.setAttribute("presidentlist", presidentlist);
 				session.setAttribute("vicepresidentlist", vicepresidentlist);
 				session.setAttribute("senatorlist", senatorlist);
 				
-				response.sendRedirect("home.jsp");
+				List<CandidateBean> ballot = client.getBallotPerUser(email, password);
+				session.setAttribute("ballot", ballot);
+				
+				response.setContentType("text/html");
+				response.setStatus(200);
+				request.getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			else {
 				response.sendRedirect("login.jsp");
