@@ -214,23 +214,27 @@ public class PostgreSQLClient {
      private void createTables() throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
-        String createquery1 = 
-		"CREATE TABLE  IF NOT EXISTS candidate  (" +
-		"CandidateID  int(11) NOT NULL AUTO_INCREMENT," +
-   "FirstName  varchar(45) NOT NULL," +
-   "MiddleName  varchar(45) DEFAULT NULL,"+
-   "LastName  varchar(45) NOT NULL,"+
-   "NickName  varchar(45) NOT NULL,"+
-   "Birthday  date DEFAULT NULL,"+
-   "Birthplace  varchar(100) DEFAULT NULL,"+
-   "Gender  varchar(45) NOT NULL,"+
-   "ElectionListID  int(11) NOT NULL,"+
-  "PRIMARY KEY (CandidateID),"+
-  "UNIQUE KEY  CandidateID_UNIQUE  (CandidateID),"+
-  "KEY  ElectionListID_idx  (ElectionListID),"+
-  "CONSTRAINT  ElectionListID2  FOREIGN KEY (ElectionListID) REFERENCES  electionlist  (ElectionListID) ON DELETE NO ACTION ON UPDATE NO ACTION)";
+        String createquery1 = "CREATE TABLE electiondate (" +  
+"ElectionDateID INT NOT NULL PRIMARY KEY," +
+  "ElectionDate date NOT NULL" +
+");";
+		String insertquery1 = "INSERT INTO electiondate(ElectionDateID, ElectionDate) VALUES (1,'2016-05-09');";
+		
+		String createquery2 = "CREATE TABLE position (" +
+  "PositionID INT NOT NULL PRIMARY KEY, " +
+  "PositionName varchar(45) NOT NULL" +
+")";
   
-        String insertquery1 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        String insertquery13 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
 		/*
 		String createquery2 = "";
         String insertquery2 = "";
