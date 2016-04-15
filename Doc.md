@@ -10,14 +10,26 @@ Tricia Nieva
 Danica Corpus
 J-jayke Tirados
 
-In light of the presidential elections our group has created a application that caters to the needs of the both the Candidates, News, Voters and possibly the Government  
+In light of the upcoming presidential elections our group has created a application that caters to the needs of the both the Candidates, News, Voters and possibly the Government. 
 
-Using postgresql and tradeoff analytics we plan to create an application that can provide the candidates useful information regarding
+Target users
+	
 
+ 1. Voters
+ 2. Candidates
+
+  
+
+
+Using postgresql and tradeoff analytics we plan to create an application that can provide the candidates useful information regarding the current situation he or she is in
 
 Our application will be able to Gather information on the different aspects of an election 
 
 Each voter will need to have a account registered in the system. Using this account we will able to track the different statistical data that the user provides  
+
+Voters will be able to acquire real time 
+
+For the different Candidates they can acquire these different data from our application in real time 
 
 1.Determining The location of low popularity 
 			The candidate Should be able to determine areas where he/she has a low rating using statistical data we should be able to direct the user where he/she should focus campaign 
