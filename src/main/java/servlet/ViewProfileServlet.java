@@ -27,10 +27,21 @@ public class ViewProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			String name = (String) request.getParameter("profile");
+			int candidateid = (int) request.getParameter("profileid");
 			
 			PostgreSQLClient client = new PostgreSQLClient();
-			client
+			CandidateBean candidatebean = new CandidateBean();
+			candidatebean = client.getCandidateProfile(candidateid);
+			
+			List<EducationalBGBean> educbgbean = null;
+			educbgbean = (List<EducationalBGBean>) client.getEducBGPerCandidate(candidateid);
+			
+			request.setAttribute("candidateprofile", candidatebean);
+			request.setAttribute("candidateeducbg", educbgbean);
+			
+			response.setContentType("text/html");
+			response.setStatus(200);
+			request.getRequestDispatcher("ViewProfile.jsp").forward(request, response);
         }
     }
 

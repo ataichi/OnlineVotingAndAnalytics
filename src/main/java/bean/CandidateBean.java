@@ -11,7 +11,6 @@ public class CandidateBean {
     private Date Birthday;
     private String Birthplace;
     private String Gender;
-    private int EducationalBGID;
     private int ElectionListID;
 
     public int getCandidateID() {
@@ -68,14 +67,6 @@ public class CandidateBean {
 
     public void setGender(String Gender) {
         this.Gender = Gender;
-    }
-
-    public int getEducationalBGID() {
-        return EducationalBGID;
-    }
-
-    public void setEducationalBGID(int EducationalBGID) {
-        this.EducationalBGID = EducationalBGID;
     }
 
     public int getElectionListID() {

@@ -16,7 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Candidate;
+import bean.CandidateBean;
+import bean.EducationalBGBean;
 
 public class PostgreSQLClient {
 
@@ -58,7 +59,7 @@ public class PostgreSQLClient {
             connection.close();
 	}
 	
-	public List<Candidate> getCandidatesPerPosition(int positionID) throws Exception {
+	public List<CandidateBean> getCandidatesPerPosition(int positionID) throws Exception {
 		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -68,7 +69,7 @@ public class PostgreSQLClient {
             statement = connection.prepareStatement(selectquery);
             rs = statement.executeQuery();
 
-            Candidate candidate = new Candidate();
+            CandidateBean candidate = new CandidateBean();
 			//candidate.setTheresareturnedvalue(0);
             if ( rs.next() ) {
                 candidate.setFirstName(rs.getString(1));
@@ -129,6 +130,14 @@ public class PostgreSQLClient {
         }
         return false;
     }
+	
+	public CandidateBean getCandidate(int candidateID) {
+		
+	}
+	
+	public List<EducationalBGBean> getEducBGPerCandidate(int candidateID) {
+		
+	}
 	
 	public boolean voteForCandidate(int CandidateID) {
 		

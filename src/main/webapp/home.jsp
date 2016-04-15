@@ -33,8 +33,8 @@
                 
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
-					out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + presidentlist.get(i).getCandidateID() + "\"/>");
-					out.println("<input type=\"label\" name=\"profile\" value=\"" + presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+					out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + presidentlist.get(i).getCandidateID() + "\"/>");
+					out.println("<input type=\"label\" name=\"candidatename\" value=\"" + presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
                     out.println("</form>");
                 out.println("</td>");
                 
@@ -62,8 +62,8 @@
                 
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
-					out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\"/>");
-                    out.println("<input type=\"label\" name=\"profile\" value=\"" + vicepresidentlist.get(i).getFirstName() + " " + vicepresidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+					out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\"/>");
+                    out.println("<input type=\"label\" name=\"candidatename\" value=\"" + vicepresidentlist.get(i).getFirstName() + " " + vicepresidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
                     out.println("</form>");
                 out.println("</td>");
                 
@@ -91,8 +91,8 @@
                 
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
-                    out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + senatorlist.get(i).getCandidateID() + "\"/>");
-					out.println("<input type=\"label\" name=\"profile\" value=\"" + senatorlist.get(i).getFirstName() + " " + senatorlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+                    out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + senatorlist.get(i).getCandidateID() + "\"/>");
+					out.println("<input type=\"label\" name=\"candidatename\" value=\"" + senatorlist.get(i).getFirstName() + " " + senatorlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
                     out.println("</form>");
                 out.println("</td>");
                
