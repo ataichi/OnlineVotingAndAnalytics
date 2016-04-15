@@ -5,7 +5,7 @@
         <title> Online Voting </title>
     </head>
     <body>
-       <form action="Login" method="POST">
+       <form action="LoginServlet" method="POST">
 			<input type="email" name="email">
 			<input type="password" name="password">
 			<input type="submit" value="Login"/>

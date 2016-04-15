@@ -1,4 +1,4 @@
-package net.tutorial.servlet;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/ViewProfile"})
-public class ViewProfile extends HttpServlet {
+@WebServlet(urlPatterns = {"/VoteServlet"})
+public class VoteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,7 +24,44 @@ public class ViewProfile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			request.getAttribute();
+			
+			//get selected candidate
+            String pres = (String) request.getParameter("selectpres");
+			String vicepres = (String) request.getParameter("selectvicepres");
+			String sen = (String) request.getParameter("selectsen");
+            
+			//retrieve candidatelist from postgre
+			PostgreClient client = new PostgreClient();
+			List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
+			List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
+			List<CandidateBean> senatorlist = client.getPresidentCandidates(3);
+			
+			//vote
+			for(int i=0; i<presidentlist.size(); i++) {
+				if(pres.matches(Integer.toString(i++))) { //selected president
+					client.voteForCandidate(presidentlist.get(i)).getCandidateID();
+				}
+			}
+			
+			for(int i=0; i<vicepresidentlist.size(); i++) {
+				if(vicepres.matches(Integer.toString(i++))) { //selected vice president
+					client.voteForCandidate(vicepresidentlist.get(i)).getCandidateID();
+				}
+			}
+			
+			for(int i=0; i<senatorlist.size(); i++) {
+				if(sen.matches(Integer.toString(i++))) { //selected senators 
+					
+				}
+			}
+			
+			//Retrieve Selected Candidates
+			List<CandidateBean> ballot = client.getBallotPerUser(email, password);
+			session.setAttribute("ballot", ballot);
+			
+			response.setContentType("text/html");
+			response.setStatus(200);
+			request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 
