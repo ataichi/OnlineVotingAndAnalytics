@@ -25,9 +25,16 @@ Our application will be able to Gather information on the different aspects of a
 
 Each voter will need to have a account registered in the system. Using this account we will able to track the different statistical data that the user provides  
 
-Voters will be able to acquire real time data of the current trend of the current standing of each candidate.
+Use for Voters
 
-Voters will also be able to input their votes during the pre-election period so that users may see the current rating of candidates.
+1.Enter your pre-election vote
+Voters will be able to enter their pre-election vote
+
+2.View Current Trends 
+Will be able to see the different standings based on pre-election 
+
+
+Use for candidates
 
 For the different Candidates they can acquire these different data from our application in real time 
 
