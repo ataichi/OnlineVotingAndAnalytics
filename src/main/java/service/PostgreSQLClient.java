@@ -233,7 +233,7 @@ public class PostgreSQLClient {
 
 		String insertquery3 = "INSERT INTO educationalbglevel(EducationalBGLevelID, LevelName) VALUES (1,'Elementary'),(2,'Secondary'),(3,'College'),(4,'Graduate Studies');";
 
-		String createquery4 = "CREATE TABLE `educationalbg` ( "+
+		String createquery4 = "CREATE TABLE educationalbg ( "+
   "EducationalBGID INT NOT NULL PRIMARY KEY,"+
   "CandidateID INT NOT NULL,"+
   "EducationalBGLevelID INT NOT NULL,"+
@@ -260,9 +260,10 @@ public class PostgreSQLClient {
 		String createquery8 = "CREATE TABLE province ( " +
   "ProvinceID INT NOT NULL PRIMARY KEY, " +
   "ProvinceName varchar(100) NOT NULL," +
-  "RegionID INT NOT NULL," +  
+  "RegionID INT NOT NULL" +  
 "); ";
 		String insertquery8 = "INSERT INTO province(ProvinceID, ProvinceName, RegionID) VALUES (1,'NEGROS OCCIDENTAL',1),(2,'NEGROS ORIENTAL',1),(3,'ABRA',3),(4,'APAYAO',3),(5,'BENGUET',3),(6,'IFUGAO',3),(7,'KALINGA',3),(8,'MOUNTAIN PROVINCE',3),(9,'ILOCOS NORTE',4),(10,'ILOCOS SUR',4),(11,'LA UNION',4),(12,'PANGASINAN',4),(13,'BATANES',5),(14,'CAGAYAN',5),(15,'ISABELA',5),(16,'NUEVA VIZCAYA',5),(17,'QUIRINO',5),(18,'AURORA',6),(19,'BATAAN',6),(20,'BULACAN',6),(21,'NUEVA ECIJA',6),(22,'PAMPANGA',6),(23,'TARLAC',6),(24,'ZAMBALES',6),(25,'BATANGAS',7),(26,'CAVITE',7),(27,'LAGUNA',7),(28,'QUEZON',7),(29,'RIZAL',7),(30,'MARINDUQUE',8),(31,'OCCIDENTAL MINDORO',8),(32,'ORIENTAL MINDORO',8),(33,'PALAWAN',8),(34,'ROMBLON',8),(35,'ALBAY',9),(36,'CAMARINES NORTE',9),(37,'CAMARINES SUR',9),(38,'CATANDUANES',9),(39,'MASBATE',9),(40,'SORSOGON',9),(41,'BASILAN',10),(42,'LANAO DEL SUR',10),(43,'MAGUINDANAO',10),(44,'SULU',10),(45,'TAWI-TAWI',10);";
+		
 		String createquery9 = "CREATE TABLE voter ( "+
   "VoterID INT NOT NULL PRIMARY KEY,"+
   "FirstName varchar(45) NOT NULL,"+
@@ -277,24 +278,24 @@ public class PostgreSQLClient {
 		String insertquery9 = "INSERT INTO voter(VoterID, FirstName, MiddleName, LastName, EmailAddress, Password, CityMunicipality, Province, Region) VALUES (1,'Patricia','A.','Nieva','tricianieva@gmail.com','heh','1','1','1'),(2,'Danica','D.','Corpuz','danicacorpuz@gmail.com','ant','2','1','1'),(3,'Kaye','S.','Solomon','ky@gmail.com','ran','3','1','1');";
 		
 		String createquery10 = "CREATE TABLE candidate ( " + 
-  "CandidateID` INT NOT NULL PRIMARY KEY," + 
-  "FirstName` varchar(45) NOT NULL," + 
-  "MiddleName` varchar(45) DEFAULT NULL," + 
-  "LastName` varchar(45) NOT NULL," + 
-  "NickName` varchar(45) NOT NULL," + 
-  "Birthday` date DEFAULT NULL," + 
-  "Birthplace` varchar(100) DEFAULT NULL," + 
-  "Gender` varchar(45) NOT NULL," + 
-  "ElectionListID` INT NOT NULL," + 
-  "EmailAddress` varchar(100) NOT NULL," + 
-  "Password` varchar(45) NOT NULL" + 
+  "CandidateID INT NOT NULL PRIMARY KEY," + 
+  "FirstName varchar(45) NOT NULL," + 
+  "MiddleName varchar(45) DEFAULT NULL," + 
+  "LastName varchar(45) NOT NULL," + 
+  "NickName varchar(45) NOT NULL," + 
+  "Birthday date DEFAULT NULL," + 
+  "Birthplace varchar(100) DEFAULT NULL," + 
+  "Gender varchar(45) NOT NULL," + 
+  "ElectionListID INT NOT NULL," + 
+  "EmailAddress varchar(100) NOT NULL," + 
+  "Password varchar(45) NOT NULL" + 
 "); ";
 		
-        String insertquery10 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
+        String insertquery10 = "INSERT INTO candidate(CandidateID,FirstName,MiddleName,LastName,NickName,Birthday,Gender,ElectionListID,EmailAddress, Password) VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1,'binay@gmail.com','jojo'),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2,'miriam@gmail.com','miriam'),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3,'rody@gmail.com','rody'),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4,'grace@gmail.com','gracr'),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5,'mar@gmail.com','mar'),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6,'roy@gmail.com','mrofw'),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7,'chiz@gmail.com','chiz'),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8,'gringo@gmail.com','gringo'),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9,'bong@gmail.com','bongbong'),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10,'leni@gmail.com','leni'),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11,'sonny@gmail.com','sonny');";
 		
 		String querysingit = "CREATE TABLE politicalparty ("+
-  "PoliticalPartyID` INT NOT NULL PRIMARY KEY,"+
-  "PoliticalPartyName` varchar(100) NOT NULL "+
+  "PoliticalPartyID INT NOT NULL PRIMARY KEY,"+
+  "PoliticalPartyName varchar(100) NOT NULL "+
 ");";
 		String querysingit2 = "INSERT INTO politicalparty(PoliticalPartyID, PoliticalPartyName) VALUES (1,'UNA'),(2,'PRP'),(3,'PDP-Laban'),(4,'IND'),(5,'LP'),(6,'WPPPMM'),(7,'PMP'),(8,'MKBYN'),(9,'KBL'),(10,'NPC'),(11,'AKBYN'),(12,'AKSYON'),(13,'LAKAS'),(14,'NP');"
 		
