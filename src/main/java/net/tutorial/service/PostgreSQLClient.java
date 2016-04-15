@@ -28,6 +28,21 @@ public class PostgreSQLClient {
         }
     }
 
+	public String getPoliticalParty(int candidateID){
+		String selectquery = "SELECT pp.PoliticalPartyName FROM politicalparty pp, electionlist el, candidate c WHERE c.CandidateID = el.ElectionList and el.PoliticalPartyID = pp.PoliticalPartyID and c.candidateID = '" + candidateID +"';";
+		Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+		try
+		{
+            ps = connection.prepareStatement(selectquery);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+             	return rs.getString(1);
+            }
+            connection.close();
+	}
+	
 	public String getPositionOfCandidate(int candidateID) {
 		String selectquery = "SELECT p.PositionName FROM position p, candidate c, electionlist el WHERE c.CandidateID = el.CandidateID and el.PositionID = p.PositionID and c.CandidateID = '" + candidateID + "';";
 		Connection connection = null;

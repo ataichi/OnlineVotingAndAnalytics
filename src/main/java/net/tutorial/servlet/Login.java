@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 				response.sendRedirect("home.jsp");
 			}
 			else {
-				response.sendRedirect("login.jsp")
+				response.sendRedirect("login.jsp");
 			}
         }
     }
