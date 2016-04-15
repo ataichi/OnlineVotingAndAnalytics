@@ -83,7 +83,7 @@ public class PostgreSQLClient {
 				candidate.setMiddleName(rs.getString(2));
 				candidate.setLastName(rs.getString(3));
 				candidate.setNickname(rs.getString(4));
-				candidate.setEducationalBGID(rs.getString(8));
+				//candidate.setEducationalBGID(rs.getString(8));
 				//candidate.setTheresareturnedvalue(1);
             }
             return candidate;

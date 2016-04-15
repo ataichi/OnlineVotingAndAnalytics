@@ -48,11 +48,11 @@ public class CandidateBean {
         this.LastName = LastName;
     }
 
-    public String getNickName() {
+    public String getNickname() {
         return NickName;
     }
 
-    public void setNickName(String NickName) {
+    public void setNickname(String NickName) {
         this.NickName = NickName;
     }
 
