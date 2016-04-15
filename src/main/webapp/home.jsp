@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@page import="bean.CandidateBean"%>
 
+<% List<CandidateBean> ballot = (List<CandidateBean>) session.getAttribute("ballot"); %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +19,7 @@
 		
 		<%
             int temp = 0;
+			boolean selectedcand = false;
 			List<CandidateBean> presidentlist = (List<CandidateBean>) session.getAttribute("presidentlist");
 			
 			out.println("<table>");
@@ -25,16 +28,31 @@
                 temp = i+1;
                 out.println("<tr>");
             
-                out.println("<td>");
-                    out.println("<form action=\"VoteServlet\" method=\"post\">");
-                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + presidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
-                    out.println("</form>");
-                out.println("</td>");
-                
+				selectedcand = false;
+				for(int j=0; j<ballot.size(); j++) {
+					if(ballot.get(j).getCandidateID() == presidentlist.get(i).getCandidateID()) {
+						selectedcand = true;
+					}
+				}
+			
+				if(selectedcand) {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + presidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\" checked><br>");
+						out.println("</form>");
+					out.println("</td>");
+				} else {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + presidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+						out.println("</form>");
+					out.println("</td>");
+				}
+				
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
-					out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + presidentlist.get(i).getCandidateID() + "\"/>");
-					out.println("<input type=\"label\" name=\"candidatename\" value=\"" + presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+						out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + presidentlist.get(i).getCandidateID() + "\"/>");
+						out.println("<input type=\"label\" name=\"candidatename\" value=\"" + presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
                     out.println("</form>");
                 out.println("</td>");
                 
@@ -54,11 +72,26 @@
                 temp = i+1;
                 out.println("<tr>");
             
-                out.println("<td>");
-                    out.println("<form action=\"VoteServlet\" method=\"post\">");
-                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
-                    out.println("</form>");
-                out.println("</td>");
+				selectedcand = false;
+				for(int j=0; j<ballot.size(); j++) {
+					if(ballot.get(j).getCandidateID() == vicepresidentlist.get(i).getCandidateID()) {
+						selectedcand = true;
+					}
+				}
+			
+				if(selectedcand) {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\" checked><br>");
+						out.println("</form>");
+					out.println("</td>");
+				} else {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+						out.println("</form>");
+					out.println("</td>");
+				}
                 
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
@@ -83,12 +116,27 @@
                 temp = i+1;
                 out.println("<tr>");
             
-                out.println("<td>");
-                    out.println("<form action=\"VoteServlet\" method=\"post\">");
-                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + senatorlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
-                    out.println("</form>");
-                out.println("</td>");
-                
+				selectedcand = false;
+				for(int j=0; j<ballot.size(); j++) {
+					if(ballot.get(j).getCandidateID() == senatorlist.get(i).getCandidateID()) {
+						selectedcand = true;
+					}
+				}
+				
+				if(selectedcand) {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + senatorlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\" checked><br>");
+						out.println("</form>");
+					out.println("</td>");
+				} else {
+					out.println("<td>");
+						out.println("<form action=\"VoteServlet\" method=\"post\">");
+						out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + senatorlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+						out.println("</form>");
+					out.println("</td>");
+				}
+			
                 out.println("<td>");
                     out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
                     out.println("<input type=\"hidden\" readonly name=\"profileid\" value=\"" + senatorlist.get(i).getCandidateID() + "\"/>");
