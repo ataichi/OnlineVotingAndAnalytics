@@ -304,7 +304,7 @@ public class PostgreSQLClient {
   "ElectionDateID INT NOT NULL,"+
   "PositionID INT NOT NULL,"+
   "CandidateID INT NOT NULL,"+
-  "PoliticalPartyID INT NOT NULL,"+
+  "PoliticalPartyID INT NOT NULL"+
 " ); "; 
 		String insertquery11 = "INSERT INTO electionlist(ElectionListID, ElectionDateID, PositionID, CandidateID, PoliticalPartyID) VALUES (1,1,1,1,1),(2,1,1,2,2),(3,1,1,3,3),(4,1,1,4,4),(5,1,1,5,5),(6,1,1,6,6),(7,1,2,7,4),(8,1,2,8,1),(9,1,2,9,4),(10,1,2,10,5),(11,1,2,11,4),(12,1,3,12,4),(13,1,3,13,6),(14,1,3,14,4),(15,1,3,15,5),(16,1,3,16,4),(17,1,3,17,4),(18,1,3,18,7),(19,1,3,19,6),(20,1,3,20,5),(21,1,3,21,5),(22,1,3,22,10),(23,1,3,23,5),(24,1,3,24,11),(25,1,3,25,1),(26,1,3,26,1),(27,1,3,27,4),(28,1,3,28,1),(29,1,3,29,12),(30,1,3,30,4),(31,1,3,31,13);";
 		
