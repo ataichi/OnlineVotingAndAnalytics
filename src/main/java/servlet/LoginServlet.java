@@ -1,4 +1,4 @@
-package net.tutorial.servlet;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/Vote"})
-public class Vote extends HttpServlet {
+import service.PostgreSQLClient;
+import bean.CandidateBean;
+
+@WebServlet(urlPatterns = {"/LoginServlet"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,14 +27,32 @@ public class Vote extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			request.getAttribute("");
 			
-			//check if nakavote na
-			request.setAttribute(prescheck, );
+			HttpSession session = request.getSession();
 			
-			request.setAttribute(viceprescheck, );
-			
-			request.setAttribute(senatorialcheck, );
+            String email = (String) request.getParameter("email");
+			String password = (String) request.getParameter("password");
+            
+			PostgreSQLClient client = new PostgreSQLClient();
+			if(client.doesVoterExist(email, password)) {
+				List<CandidateBean> presidentlist = client.getCandidatesPerPosition(1);
+				List<CandidateBean> vicepresidentlist = client.getCandidatesPerPosition(2);
+				List<CandidateBean> senatorlist = client.getCandidatesPerPosition(3);
+				
+				session.setAttribute("presidentlist", presidentlist);
+				session.setAttribute("vicepresidentlist", vicepresidentlist);
+				session.setAttribute("senatorlist", senatorlist);
+				
+				List<CandidateBean> ballot = client.getBallotPerUser(email, password);
+				session.setAttribute("ballot", ballot);
+				
+				response.setContentType("text/html");
+				response.setStatus(200);
+				request.getRequestDispatcher("home.jsp").forward(request, response);
+			}
+			else {
+				response.sendRedirect("login.jsp");
+			}
         }
     }
 

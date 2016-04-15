@@ -2,16 +2,16 @@ package bean;
 
 import java.util.Date;
 
-public class Candidate {
+public class CandidateBean {
 
     private int CandidateID;
     private String FirstName;
     private String MiddleName;
     private String LastName;
+	private String Nickname;
     private Date Birthday;
     private String Birthplace;
     private String Gender;
-    private int EducationalBGID;
     private int ElectionListID;
 
     public int getCandidateID() {
@@ -68,14 +68,6 @@ public class Candidate {
 
     public void setGender(String Gender) {
         this.Gender = Gender;
-    }
-
-    public int getEducationalBGID() {
-        return EducationalBGID;
-    }
-
-    public void setEducationalBGID(int EducationalBGID) {
-        this.EducationalBGID = EducationalBGID;
     }
 
     public int getElectionListID() {

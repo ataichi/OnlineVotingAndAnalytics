@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,7 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Candidate;
+import bean.CandidateBean;
+import bean.EducationalBGBean;
 
 public class PostgreSQLClient {
 
@@ -43,6 +45,7 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}
 	}
 	
 	public String getPositionOfCandidate(int candidateID) throws Exception {
@@ -58,9 +61,10 @@ public class PostgreSQLClient {
              	return rs.getString(1);
             }
             connection.close();
+		}
 	}
 	
-	public List<Candidate> getPresidentCandidates(int positionID) throws Exception {
+	public List<CandidateBean> getCandidatesPerPosition(int positionID) throws Exception {
 		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -70,7 +74,7 @@ public class PostgreSQLClient {
             statement = connection.prepareStatement(selectquery);
             rs = statement.executeQuery();
 
-            Candidate candidate = new Candidate();
+            CandidateBean candidate = new CandidateBean();
 			//candidate.setTheresareturnedvalue(0);
             if ( rs.next() ) {
                 candidate.setFirstName(rs.getString(1));
@@ -131,6 +135,54 @@ public class PostgreSQLClient {
         }
         return false;
     }
+	
+	public CandidateBean getCandidate(int candidateID) {
+		String selectquery = "SELECT * FROM candidate c WHERE c.CandidateID";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+		try {
+            connection = getConnection();
+            statement = connection.prepareStatement(selectquery);
+            rs = statement.executeQuery();
+
+            CandidateBean candidate = new CandidateBean();
+            if ( rs.next() ) {
+				candidate.setCandidateID(rs.getInt("CandidateID"));
+                candidate.setFirstName(rs.getString("FirstName"));
+				candidate.setMiddleName(rs.getString("MiddleName"));
+				candidate.setLastName(rs.getString("LastName"));
+				candidate.setNickname(rs.getString("Nickname"));
+				candidate.setBirthday(rs.getDate("Birthday"));
+				candidate.setBirthplace(rs.getString("Birthplace"));
+				candidate.setGender(rs.getString("Gender"));
+				candidate.setElectionListID(rs.getInt("ElectionListID"));
+            }
+            return candidate;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+	}
+	
+	public List<EducationalBGBean> getEducBGPerCandidate(int candidateID) {
+		
+	}
+	
+	public boolean voteForCandidate(int CandidateID) {
+		
+	}
+	
+	public List<CandidateBean> getVotedCandidatesPerUser(String email, String password) {
+		
+	}
 
     public static Connection getConnection() throws Exception {
         Map<String, String> env = System.getenv();
