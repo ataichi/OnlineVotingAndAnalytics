@@ -14,6 +14,9 @@ In light of the presidential elections our group has created a application that 
 
 Using postgresql and tradeoff analytics we plan to create an application that can provide the candidates useful information regarding
 
+
+Our application will be able to Gather information on the different aspects of an election 
+
  1. Determining The location of low popularity 
 		
 			The candidate Should be able to determine areas where he/she has a low rating using statistical data we should be able to direct the user where he/she should focus campaign 
