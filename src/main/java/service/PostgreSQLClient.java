@@ -276,42 +276,44 @@ public class PostgreSQLClient {
 "); ";
 		String insertquery9 = "INSERT INTO voter(VoterID, FirstName, MiddleName, LastName, EmailAddress, Password, CityMunicipality, Province, Region) VALUES (1,'Patricia','A.','Nieva','tricianieva@gmail.com','heh','1','1','1'),(2,'Danica','D.','Corpuz','danicacorpuz@gmail.com','ant','2','1','1'),(3,'Kaye','S.','Solomon','ky@gmail.com','ran','3','1','1');";
 		
+		String createquery10 = "CREATE TABLE candidate ( " + 
+  "CandidateID` INT NOT NULL PRIMARY KEY," + 
+  "FirstName` varchar(45) NOT NULL," + 
+  "MiddleName` varchar(45) DEFAULT NULL," + 
+  "LastName` varchar(45) NOT NULL," + 
+  "NickName` varchar(45) NOT NULL," + 
+  "Birthday` date DEFAULT NULL," + 
+  "Birthplace` varchar(100) DEFAULT NULL," + 
+  "Gender` varchar(45) NOT NULL," + 
+  "ElectionListID` INT NOT NULL," + 
+  "EmailAddress` varchar(100) NOT NULL," + 
+  "Password` varchar(45) NOT NULL" + 
+"); ";
 		
-  
-        String insertquery13 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
-		/*
-		String createquery2 = "";
-        String insertquery2 = "";
-		String createquery3 = "";
-        String insertquery3 = "";
-		String createquery4 = "";
-        String insertquery4 = "";
-		String createquery5 = "";
-        String insertquery5 = "";
-		String createquery6 = "";
-        String insertquery6 = "";
-		String createquery7 = "";
-        String insertquery7 = "";
-		String createquery8 = "";
-        String insertquery8 = "";
-		String createquery9 = "";
-        String insertquery9 = "";
-		String createquery10 = "";
-        String insertquery10 = "";
-		String createquery11 = "";
-        String insertquery11 = "";
+        String insertquery10 = "INSERT INTO candidate VALUES (1,'Jejomar','C.','Binay','Jojo','1942-11-11','Paco, Manila','Male',1),(2,'Miriam','D.','Santiago','Miriam','1945-06-15','La Paz, Iloilo','Female',2),(3,'Rodrigo','R.','Duterte','Rody','1945-03-28','Maasin, Southern Leyte','Male',3),(4,'Grace',NULL,'Poe','Grace','1968-09-03','Jaro, Iloilo','Female',4),(5,'Manuel','A.','Roxas','Mar','1957-05-13','Manila','Male',5),(6,'Roy','V.','Señeres','Mr. OFW','1947-07-06','Mambusao, Capiz','Male',6),(7,'Francis Joseph','G.','Escudero','Chiz','1969-10-10','Manila Doctor\'s Hospital, Manila','Male',7),(8,'Gregorio','B.','Honasan','Gringo','1948-03-14','Baguio City','Male',8),(9,'Ferdinand','E.','Marcos Jr.','Bongbong','1957-09-13','Manila, Philippines','Female',9),(10,'Maria Leonor','G.','Robredo','Leni',NULL,NULL,'Female',10),(11,'Antonio','F.','Trillanes IV','Sonny','1971-08-06','Caloocan City','Male',11);";
+		
+		String createquery11 = "CREATE TABLE electionlist ( "+
+  "ElectionListID INT NOT NULL PRIMARY KEY,"+
+  "ElectionDateID INT NOT NULL,"+
+  "PositionID INT NOT NULL,"+
+  "CandidateID INT NOT NULL,"+
+  "PoliticalPartyID INT NOT NULL,"+
+" ); "; 
+		String insertquery11 = "INSERT INTO electionlist(ElectionListID, ElectionDateID, PositionID, CandidateID, PoliticalPartyID) VALUES (1,1,1,1,1),(2,1,1,2,2),(3,1,1,3,3),(4,1,1,4,4),(5,1,1,5,5),(6,1,1,6,6),(7,1,2,7,4),(8,1,2,8,1),(9,1,2,9,4),(10,1,2,10,5),(11,1,2,11,4),(12,1,3,12,4),(13,1,3,13,6),(14,1,3,14,4),(15,1,3,15,5),(16,1,3,16,4),(17,1,3,17,4),(18,1,3,18,7),(19,1,3,19,6),(20,1,3,20,5),(21,1,3,21,5),(22,1,3,22,10),(23,1,3,23,5),(24,1,3,24,11),(25,1,3,25,1),(26,1,3,26,1),(27,1,3,27,4),(28,1,3,28,1),(29,1,3,29,12),(30,1,3,30,4),(31,1,3,31,13);";
+		
 		String createquery12 = "";
+		
         String insertquery12 = "";
 		String createquery13 = "";
         String insertquery13 = "";
-		*/
+		
         try {
             connection = getConnection();
             statement = connection.prepareStatement(createquery1);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery1);
             statement.executeUpdate();
-			/*statement = connection.prepareStatement(createquery2);
+			statement = connection.prepareStatement(createquery2);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery2);
             statement.executeUpdate();
@@ -358,7 +360,7 @@ public class PostgreSQLClient {
 			statement = connection.prepareStatement(createquery13);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery13);
-            statement.executeUpdate();*/
+            statement.executeUpdate();
         } finally {
             if (statement != null) {
                 statement.close();
