@@ -12,12 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import bean.Candidate;
 
-/**
- *
- * @author nievabri
- */
 public class PostgreSQLClient {
 
     public PostgreSQLClient() {
@@ -28,7 +28,22 @@ public class PostgreSQLClient {
         }
     }
 
-	public String getPositionOfCandidate(int candidateID){
+	public String getPoliticalParty(int candidateID) throws Exception {
+		String selectquery = "SELECT pp.PoliticalPartyName FROM politicalparty pp, electionlist el, candidate c WHERE c.CandidateID = el.ElectionList and el.PoliticalPartyID = pp.PoliticalPartyID and c.candidateID = '" + candidateID +"';";
+		Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+		try
+		{
+            ps = connection.prepareStatement(selectquery);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+             	return rs.getString(1);
+            }
+            connection.close();
+	}
+	
+	public String getPositionOfCandidate(int candidateID) throws Exception {
 		String selectquery = "SELECT p.PositionName FROM position p, candidate c, electionlist el WHERE c.CandidateID = el.CandidateID and el.PositionID = p.PositionID and c.CandidateID = '" + candidateID + "';";
 		Connection connection = null;
         PreparedStatement ps = null;
@@ -43,7 +58,7 @@ public class PostgreSQLClient {
             connection.close();
 	}
 	
-	public List<Candidate> getPresidentCandidates(int positionID){
+	public List<Candidate> getPresidentCandidates(int positionID) throws Exception {
 		String selectquery = "SELECT * FROM candidate c, electionlist el WHERE c.ElectionListID = el.ElectionListID and el.PositionID = '" + positionID + "';";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -77,7 +92,7 @@ public class PostgreSQLClient {
         }
 	}
 
-    public boolean doesVoterExist(String email, String password) {
+    public boolean doesVoterExist(String email, String password) throws Exception {
         String selectquery = "SELECT * FROM voter WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
@@ -96,7 +111,7 @@ public class PostgreSQLClient {
         return false;
     }
 	
-	public boolean doesCandidateExist(String email, String password) {
+	public boolean doesCandidateExist(String email, String password)throws Exception {
         String selectquery = "SELECT * FROM candidate WHERE EmailAdress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;
         PreparedStatement ps = null;
