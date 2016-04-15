@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class Candidate {
+public class CandidateBean {
 
     private int CandidateID;
     private String FirstName;

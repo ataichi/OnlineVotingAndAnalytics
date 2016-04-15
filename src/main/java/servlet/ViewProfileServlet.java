@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.CandidateBean;
+import service.PostgreSQLClient;
+
 @WebServlet(urlPatterns = {"/ViewProfileServlet"})
 public class ViewProfileServlet extends HttpServlet {
 
@@ -24,7 +27,10 @@ public class ViewProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			request.getAttribute();
+			String name = (String) request.getParameter("profile");
+			
+			PostgreSQLClient client = new PostgreSQLClient();
+			client
         }
     }
 

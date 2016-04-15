@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.CandidateBean;
+import service.PostgreSQLClient;
+
 @WebServlet(urlPatterns = {"/VoteServlet"})
 public class VoteServlet extends HttpServlet {
 
@@ -31,7 +34,7 @@ public class VoteServlet extends HttpServlet {
 			String sen = (String) request.getParameter("selectsen");
             
 			//retrieve candidatelist from postgre
-			PostgreClient client = new PostgreClient();
+			PostgreSQLClient client = new PostgreClient();
 			List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
 			List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
 			List<CandidateBean> senatorlist = client.getPresidentCandidates(3);

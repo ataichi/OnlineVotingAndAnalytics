@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@page import="bean.CandidateBean"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,43 +9,97 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Logout</h2>
+        <a href="index.jsp">Logout</a>
 		
 		<h1>Candidate List</h1>
-			
-		<h2>Presidential</h2>
 		
-        <% List<CandidateBean> presidentlist = (List<CandidateBean>) session.getAttribute("presidentlist"); %>
-            <form action=\"VoteServlet\" method=\"post\">
-				<% for (int i = 0; i < presidentlist.size(); i++) { %>
-					<input type=\"radio\" name=\"selectpres\" value=\" <% i++ %> " + onChange=\"this.form.submit()\">");
-					<a href="ViewProfile.jsp">presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName()</a>
-				<br>
-				<% } %>
-				<form action=\"ViewProfile\">
-				</form>
-			</form>
-			
-        <h2>Vice Presidential</h2>
+		<h2>Presidential Candidates</h2>
 		
-        <% List<CandidateBean> vicepresidentlist = (List<CandidateBean>) session.getAttribute("vicepresidentlist"); %>
-			<form action=\"VoteServlet\" method=\"post\">
-				<% for (int i = 0; i < vicepresidentlist.size(); i++) { %>
-					<input type=\"radio\" name=\"selectvicepres\" value=\" <% i++ %> " + onChange=\"this.form.submit()\">");
-					<a href="ViewProfile.jsp">vicepresidentlist.get(i).getFirstName() + " " + vicepresidentlist.get(i).getLastName()</a>
-					<br>
-				<% } %>
-			</form>
+		<%
+            int temp = 0;
+			List<CandidateBean> presidentlist = (List<CandidateBean>) session.getAttribute("presidentlist");
 			
-        <h2>Senatorial</h2>
+			out.println("<table>");
+            temp = 0;
+            for(int i=0; i<presidentlist.size(); i++) {
+                temp = i+1;
+                out.println("<tr>");
+            
+                out.println("<td>");
+                    out.println("<form action=\"VoteServlet\" method=\"post\">");
+                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + presidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+                    out.println("</form>");
+                out.println("</td>");
+                
+                out.println("<td>");
+                    out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
+					out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + presidentlist.get(i).getCandidateID() + "\"/>");
+					out.println("<input type=\"label\" name=\"profile\" value=\"" + presidentlist.get(i).getFirstName() + " " + presidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+                    out.println("</form>");
+                out.println("</td>");
+                
+                out.println("</tr>");
+            }
+            out.println("</table>");
+        %>
+			
+        <h2>Vice Presidential Candidates</h2>
 		
-        <% List<CandidateBean> senatorlist = (List<CandidateBean>) session.getAttribute("senatorlist"); %>
-			<form action=\"VoteServlet\" method=\"post\">
-				<% for (int i = 0; i < senatorlist.size(); i++) { %>
-					<input type=\"radio\" name=\"selectsen\" value=\" <% i++ %> " + onChange=\"this.form.submit()\">");
-					<a href="ViewProfile.jsp">senatorlist.get(i).getFirstName() + " " + senatorlist.get(i).getLastName()</a>
-					<br>
-				<% } %>
-			</form>
+		<%
+			List<CandidateBean> vicepresidentlist = (List<CandidateBean>) session.getAttribute("vicepresidentlist");
+			
+			out.println("<table>");
+            temp = 0;
+            for(int i=0; i<vicepresidentlist.size(); i++) {
+                temp = i+1;
+                out.println("<tr>");
+            
+                out.println("<td>");
+                    out.println("<form action=\"VoteServlet\" method=\"post\">");
+                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+                    out.println("</form>");
+                out.println("</td>");
+                
+                out.println("<td>");
+                    out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
+					out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + vicepresidentlist.get(i).getCandidateID() + "\"/>");
+                    out.println("<input type=\"label\" name=\"profile\" value=\"" + vicepresidentlist.get(i).getFirstName() + " " + vicepresidentlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+                    out.println("</form>");
+                out.println("</td>");
+                
+                out.println("</tr>");
+            }
+            out.println("</table>");
+        %>
+			
+        <h2>Senatorial Candidates</h2>
+		
+        <%
+			List<CandidateBean> senatorlist = (List<CandidateBean>) session.getAttribute("senatorlist");
+			
+			out.println("<table>");
+            temp = 0;
+            for(int i=0; i<senatorlist.size(); i++) {
+                temp = i+1;
+                out.println("<tr>");
+            
+                out.println("<td>");
+                    out.println("<form action=\"VoteServlet\" method=\"post\">");
+                    out.println("<input type=\"radio\" name=\"selectpres\" value=\"" + senatorlist.get(i).getCandidateID() + "\" onChange=\"this.form.submit()\"><br>");
+                    out.println("</form>");
+                out.println("</td>");
+                
+                out.println("<td>");
+                    out.println("<form action=\"ViewProfileServlet\" method=\"post\">");
+                    out.println("<input type=\"hidden\" readonly name=\"profile\" value=\"" + senatorlist.get(i).getCandidateID() + "\"/>");
+					out.println("<input type=\"label\" name=\"profile\" value=\"" + senatorlist.get(i).getFirstName() + " " + senatorlist.get(i).getLastName() + "\" onclick=\"this.form.submit()\" readonly>");
+                    out.println("</form>");
+                out.println("</td>");
+               
+                out.println("</tr>");
+            }
+            out.println("</table>");
+        %>
+		
     </body>
 </html>
