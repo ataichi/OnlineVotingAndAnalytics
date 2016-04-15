@@ -1,3 +1,4 @@
+package bean;
 public class EducationalBGBean {
     private int educationalBGID;
     private int candidateID;
