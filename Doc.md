@@ -10,6 +10,8 @@ Tricia Nieva
 Danica Corpus
 J-jayke Tirados
 
+PPT - [link] (https://github.com/ataichi/OnlineVotingAndAnalytics/blob/master/Online%20Voting%20And%20Analytics.pptx) 
+
 In light of the upcoming presidential elections our group has created a application that caters to the needs of the both the Candidates, News, Voters and possibly the Government. 
 
 Target users
