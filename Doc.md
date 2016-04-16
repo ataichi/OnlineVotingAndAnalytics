@@ -20,7 +20,7 @@ Target users
   
 Using postgresql and tradeoff analytics we plan to create an application that can provide the candidates useful information regarding the current situation he or she is in
 
-PostgreSQL was used to store our user information as well as the 
+PostgreSQL was used to store our user information as well as the different values that are used in our application
 
 Tradeoff analytics was used in obtaining different information based on the raw data that voters provided. Using this feature we were able to extract the information that the our users can use.
 
