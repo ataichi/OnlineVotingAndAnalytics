@@ -35,16 +35,16 @@ public class LoginCandidateServlet extends HttpServlet {
             String email = (String) request.getParameter("email");
 			String password = (String) request.getParameter("password");
             
-			PostgreSQLClient client = new PostgreSQLClient();
-			if(client.doesCandidateExist(email, password)) {
+			//PostgreSQLClient client = new PostgreSQLClient();
+			//if(client.doesCandidateExist(email, password)) {
 				
 				response.setContentType("text/html");
 				response.setStatus(200);
 				request.getRequestDispatcher("candidatehome.jsp").forward(request, response);
-			}
-			else {
-				response.sendRedirect("candidatelogin.jsp");
-			}
+			//}
+			//else {
+			//	response.sendRedirect("candidatelogin.jsp");
+			//}
         }
     }
 
