@@ -121,6 +121,7 @@ public class PostgreSQLClient {
             rs = statement.executeQuery();
 
             CandidateBean candidate = new CandidateBean();
+<<<<<<< HEAD
 			List<CandidateBean> candidates = new ArrayList<CandidateBean>();
 			//candidate.setTheresareturnedvalue(0);
             if ( rs.next() ) {
@@ -133,6 +134,27 @@ public class PostgreSQLClient {
 				//candidate.setTheresareturnedvalue(1);
             }
             return candidates;
+=======
+			List<CandidateBean> listcandidate = new ArrayList<CandidateBean>();
+			//candidate.setTheresareturnedvalue(0);
+            while (rs.next()) {
+				
+				candidate = new CandidateBean();
+				
+                candidate.setCandidateID(rs.getInt("CandidateID"));
+                candidate.setFirstName(rs.getString("FirstName"));
+				candidate.setMiddleName(rs.getString("MiddleName"));
+				candidate.setLastName(rs.getString("LastName"));
+				candidate.setNickname(rs.getString("Nickname"));
+				candidate.setBirthday(rs.getDate("Birthday"));
+				candidate.setBirthplace(rs.getString("Birthplace"));
+				candidate.setGender(rs.getString("Gender"));
+				candidate.setElectionListID(rs.getInt("ElectionListID"));
+				
+				listcandidate.add(candidate);
+            }
+            return listcandidate;
+>>>>>>> 8db02b032ac396a90bdf1604dd22f1671149e327
         } finally {
             if (rs != null) {
                 rs.close();
