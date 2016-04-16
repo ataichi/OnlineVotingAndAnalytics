@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.CandidateBean;
 import service.PostgreSQLClient;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import service.*;
 
 @WebServlet(urlPatterns = {"/VoteServlet"})
 public class VoteServlet extends HttpServlet {
@@ -27,14 +31,14 @@ public class VoteServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-			
+			HttpSession session = request.getSession();
 			//get selected candidate
             String pres = (String) request.getParameter("selectpres");
 			String vicepres = (String) request.getParameter("selectvicepres");
 			String sen = (String) request.getParameter("selectsen");
             
 			//retrieve candidatelist from postgre
-			PostgreSQLClient client = new PostgreClient();
+			PostgreSQLClient client = new PostgreSQLClient();
 			List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
 			List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
 			List<CandidateBean> senatorlist = client.getPresidentCandidates(3);

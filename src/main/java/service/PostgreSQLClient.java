@@ -30,22 +30,63 @@ public class PostgreSQLClient {
         }
     }
 	
+	public List<CandidateBean> getBallotPerUser(String email, String password) throws Exception{
+		//List<CandidateBean> candidates = new ArrayList<CandidateBean>();
+		String selectquery = "SELECT * FROM vote v";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+		try {
+            connection = getConnection();
+            statement = connection.prepareStatement(selectquery);
+            rs = statement.executeQuery();
+
+            CandidateBean candidate = new CandidateBean();
+			List<CandidateBean> candidates = new ArrayList<CandidateBean>();
+			
+            if ( rs.next() ) {
+                candidate.setFirstName(rs.getString(1));
+				candidate.setMiddleName(rs.getString(2));
+				candidate.setLastName(rs.getString(3));
+				candidate.setNickname(rs.getString(4));
+				candidates.add(candidate);
+				//candidate.setEducationalBGID(rs.getString(8));
+				//candidate.setTheresareturnedvalue(1);
+            }
+            return candidates;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+		return candidates;
+	}
+	
 	public String getPoliticalParty(int candidateID) throws Exception {
 		String selectquery = "SELECT pp.PoliticalPartyName FROM politicalparty pp, electionlist el, candidate c WHERE c.CandidateID = el.ElectionList and el.PoliticalPartyID = pp.PoliticalPartyID and c.candidateID = '" + candidateID +"';";
 		Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+		String temp = null;
 		try
 		{
             ps = connection.prepareStatement(selectquery);
             rs = ps.executeQuery();
             while (rs.next()) {
-             	return rs.getString(1);
+             	temp =  rs.getString(1);
+				return temp;
             }
             connection.close();
 		}catch(Exception e){
 		
 		}
+		return temp;
 	}
 	
 	public String getPositionOfCandidate(int candidateID) throws Exception {
@@ -53,17 +94,20 @@ public class PostgreSQLClient {
 		Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+		String temp = null;
 		try
 		{
             ps = connection.prepareStatement(selectquery);
             rs = ps.executeQuery();
             while (rs.next()) {
-             	return rs.getString(1);
+             	temp = rs.getString(1);
+				return temp;
             }
             connection.close();
 		}catch(Exception e){
 		
 		}
+		return temp;
 	}
 	
 	public List<CandidateBean> getCandidatesPerPosition(int positionID) throws Exception {
@@ -77,16 +121,18 @@ public class PostgreSQLClient {
             rs = statement.executeQuery();
 
             CandidateBean candidate = new CandidateBean();
+			List<CandidateBean> candidates = new ArrayList<CandidateBean>();
 			//candidate.setTheresareturnedvalue(0);
             if ( rs.next() ) {
                 candidate.setFirstName(rs.getString(1));
 				candidate.setMiddleName(rs.getString(2));
 				candidate.setLastName(rs.getString(3));
 				candidate.setNickname(rs.getString(4));
+				candidates.add(candidate);
 				//candidate.setEducationalBGID(rs.getString(8));
 				//candidate.setTheresareturnedvalue(1);
             }
-            return candidate;
+            return candidates;
         } finally {
             if (rs != null) {
                 rs.close();
@@ -138,7 +184,7 @@ public class PostgreSQLClient {
         return false;
     }
 	
-	public CandidateBean getCandidate(int candidateID) {
+	public CandidateBean getCandidate(int candidateID) throws Exception{
 		String selectquery = "SELECT * FROM candidate c WHERE c.CandidateID";
         Connection connection = null;
         PreparedStatement statement = null;
@@ -172,20 +218,21 @@ public class PostgreSQLClient {
                 connection.close();
             }
         }
-	}
-	
-	public List<EducationalBGBean> getEducBGPerCandidate(int candidateID) {
 		
+	}
+	/*
+	public List<EducationalBGBean> getEducBGPerCandidate(int candidateID) {
+		return ;
 	}
 	
 	public boolean voteForCandidate(int CandidateID) {
-		
+		return ;
 	}
 	
 	public List<CandidateBean> getVotedCandidatesPerUser(String email, String password) {
-		
+		return ;
 	}
-
+*/
     public static Connection getConnection() throws Exception {
         Map<String, String> env = System.getenv();
         if (env.containsKey("VCAP_SERVICES")) {
@@ -251,7 +298,7 @@ public class PostgreSQLClient {
   "CitymunicipalityName varchar(45) NOT NULL, "+
   "ProvinceID INT NOT NULL "+
 ");";
-		String insertquery6 = 
+		String insertquery5 = 
 		"INSERT INTO citymunicipality(CityMunicipalityID, CitymunicipalityName) VALUES (1,'BACOLOD CITY (Capital)',1),(2,'CALATRAVA',1),(3,'CITY OF ESCALANTE',1),(4,'SAN CARLOS CITY',1),(5,'AYUNGON',2),(6,'BACONG',2),(7,'BANGUED (Capital)',3),(8,'BOLINEY',3),(9,'FLORA',4),(10,'LUNA',4),(11,'ATOK',5),(12,'BAGUIO CITY',5),(13,'BANAUE',6),(14,'HUNGDUAN',6),(15,'BALBALAN',7),(16,'LUBUAGAN',7),(17,'BARLIG',8),(18,'BAUKO',8),(19,'ADAMS',9),(20,'BACARRA',9),(21,'ALILEM',10),(22,'BANAYOYO',10),(23,'AGOO',11),(24,'ARINGAY',11),(25,'AGNO',12),(26,'AGUILAR',12),(27,'BASCO (Capital)',13),(28,'ITBAYAT',13),(29,'ABULUG',14),(30,'ALCALA',14),(31,'ALICIA',15),(32,'ANGADANAN',15),(33,'ARITAO',16),(34,'BAGABAG',16),(35,'AGLIPAY',17),(36,'CABARROGUIS (Capital)',17),(37,'BALER (Capital)',18),(38,'CASIGURAN',18),(39,'ABUCAY',19),(40,'BAGAC',19),(41,'ANGAT',20),(42,'BALAGTAS (BIGAA)',20),(43,'ALIAGA',21),(44,'BONGABON',21),(45,'ANGELES CITY',22),(46,'APALIT',22),(47,'ANAO',23),(48,'BAMBAN',23),(49,'BOTOLAN',24),(50,'CABANGAN',24),(51,'AGONCILLO',25),(52,'BALETE',25),(53,'ALFONSO',26),(54,'AMADEO',26),(55,'ALAMINOS',27),(56,'BAY',27),(57,'AGDANGAN',28),(58,'ALABAT',28),(59,'ANGONO',29),(60,'CITY OF ANTIPOLO',29),(61,'BOAC (Capital)',30),(62,'BUENAVISTA',30),(63,'ABRA DE ILOG',31),(64,'CALINTAAN',31),(65,'BACO',32),(66,'BANSUD',32),(67,'ABORLAN',33),(68,'AGUTAYA',33),(69,'ALCANTARA',34),(70,'BANTON',34),(71,'BACACAY',35),(72,'CAMALIG',35),(73,'BASUD',36),(74,'CAPALONGA',36),(75,'BALATAN',37),(76,'BATO',37),(77,'BAGAMANOC',38),(78,'BARAS',38),(79,'AROROY',39),(80,'BALENO',39),(81,'BARCELONA',40),(82,'BULAN',40),(83,'CITY OF LAMITAN',41),(84,'LANTAWAN',41),(85,'BACOLOD-KALAWI (BACOLOD GRANDE)',42),(86,'BALABAGAN',42),(87,'AMPATUAN',43),(88,'BULDON',43),(89,'INDANAN',44),(90,'JOLO (Capital)',44),(91,'PANGLIMA SUGALA (BALIMBING)',45),(92,'BONGAO (Capital)',45);";
   
 		String createquery7 = "CREATE TABLE region ( "+
@@ -343,10 +390,10 @@ public class PostgreSQLClient {
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery5);
             statement.executeUpdate();
-			statement = connection.prepareStatement(createquery6);
-            statement.executeUpdate();
-            statement = connection.prepareStatement(insertquery6);
-            statement.executeUpdate();
+			//statement = connection.prepareStatement(createquery6);
+           // statement.executeUpdate();
+           // statement = connection.prepareStatement(insertquery6);
+            //statement.executeUpdate();
 			statement = connection.prepareStatement(createquery7);
             statement.executeUpdate();
             statement = connection.prepareStatement(insertquery7);
