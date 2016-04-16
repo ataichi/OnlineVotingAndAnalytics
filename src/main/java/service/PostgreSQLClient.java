@@ -65,7 +65,7 @@ public class PostgreSQLClient {
                 connection.close();
             }
         }
-		return candidates;
+		
 	}
 	
 	public String getPoliticalParty(int candidateID) throws Exception {
@@ -121,20 +121,7 @@ public class PostgreSQLClient {
             rs = statement.executeQuery();
 
             CandidateBean candidate = new CandidateBean();
-<<<<<<< HEAD
-			List<CandidateBean> candidates = new ArrayList<CandidateBean>();
-			//candidate.setTheresareturnedvalue(0);
-            if ( rs.next() ) {
-                candidate.setFirstName(rs.getString(1));
-				candidate.setMiddleName(rs.getString(2));
-				candidate.setLastName(rs.getString(3));
-				candidate.setNickname(rs.getString(4));
-				candidates.add(candidate);
-				//candidate.setEducationalBGID(rs.getString(8));
-				//candidate.setTheresareturnedvalue(1);
-            }
-            return candidates;
-=======
+
 			List<CandidateBean> listcandidate = new ArrayList<CandidateBean>();
 			//candidate.setTheresareturnedvalue(0);
             while (rs.next()) {
@@ -154,7 +141,7 @@ public class PostgreSQLClient {
 				listcandidate.add(candidate);
             }
             return listcandidate;
->>>>>>> 8db02b032ac396a90bdf1604dd22f1671149e327
+
         } finally {
             if (rs != null) {
                 rs.close();
