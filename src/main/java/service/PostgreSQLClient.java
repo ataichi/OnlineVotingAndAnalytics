@@ -77,16 +77,25 @@ public class PostgreSQLClient {
             rs = statement.executeQuery();
 
             CandidateBean candidate = new CandidateBean();
+			List<CandidateBean> listcandidate = new ArrayList<CandidateBean>();
 			//candidate.setTheresareturnedvalue(0);
-            if ( rs.next() ) {
-                candidate.setFirstName(rs.getString(1));
-				candidate.setMiddleName(rs.getString(2));
-				candidate.setLastName(rs.getString(3));
-				candidate.setNickname(rs.getString(4));
-				//candidate.setEducationalBGID(rs.getString(8));
-				//candidate.setTheresareturnedvalue(1);
+            while (rs.next()) {
+				
+				candidate = new CandidateBean();
+				
+                candidate.setCandidateID(rs.getInt("CandidateID"));
+                candidate.setFirstName(rs.getString("FirstName"));
+				candidate.setMiddleName(rs.getString("MiddleName"));
+				candidate.setLastName(rs.getString("LastName"));
+				candidate.setNickname(rs.getString("Nickname"));
+				candidate.setBirthday(rs.getDate("Birthday"));
+				candidate.setBirthplace(rs.getString("Birthplace"));
+				candidate.setGender(rs.getString("Gender"));
+				candidate.setElectionListID(rs.getInt("ElectionListID"));
+				
+				listcandidate.add(candidate);
             }
-            return candidate;
+            return listcandidate;
         } finally {
             if (rs != null) {
                 rs.close();
