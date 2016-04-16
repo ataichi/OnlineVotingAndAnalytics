@@ -6,7 +6,7 @@
     </head>
     <body>
 		<%
-			<form method="post" action="TradeoffServlet">
+			<form method="post" action="AnalyzeCampaign">
 			<table>
 				<tr>
 					<td>
