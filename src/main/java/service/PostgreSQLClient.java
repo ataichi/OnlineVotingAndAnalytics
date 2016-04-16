@@ -108,7 +108,7 @@ public class PostgreSQLClient {
             }
         }
 	}
-
+	
     public boolean doesVoterExist(String email, String password) throws Exception {
         String selectquery = "SELECT * FROM voter WHERE EmailAddress = '" + email + "' and Password = '" + password + "';";
         Connection connection = null;

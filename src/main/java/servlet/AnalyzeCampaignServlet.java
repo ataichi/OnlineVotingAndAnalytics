@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 @WebServlet(urlPatterns = {"/AnalyzeCampaignServlet"})
 public class AnalyzeCampaignServlet extends HttpServlet {
 

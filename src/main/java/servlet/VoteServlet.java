@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.List;
 import bean.CandidateBean;
 import service.PostgreSQLClient;
 
@@ -28,27 +29,29 @@ public class VoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 			
+			HttpSession session = request.getSession();
+			
 			//get selected candidate
             String pres = (String) request.getParameter("selectpres");
 			String vicepres = (String) request.getParameter("selectvicepres");
 			String sen = (String) request.getParameter("selectsen");
             
 			//retrieve candidatelist from postgre
-			PostgreSQLClient client = new PostgreClient();
-			List<CandidateBean> presidentlist = client.getPresidentCandidates(1);
-			List<CandidateBean> vicepresidentlist = client.getPresidentCandidates(2);
-			List<CandidateBean> senatorlist = client.getPresidentCandidates(3);
+			PostgreSQLClient client = new PostgreSQLClient();
+			List<CandidateBean> presidentlist = client.getCandidatesPerPosition(1);
+			List<CandidateBean> vicepresidentlist = client.getCandidatesPerPosition(2);
+			List<CandidateBean> senatorlist = client.getCandidatesPerPosition(3);
 			
 			//vote
 			for(int i=0; i<presidentlist.size(); i++) {
 				if(pres.matches(Integer.toString(i++))) { //selected president
-					client.voteForCandidate(presidentlist.get(i)).getCandidateID();
+					client.voteForCandidate(presidentlist.get(i).getCandidateID());
 				}
 			}
 			
 			for(int i=0; i<vicepresidentlist.size(); i++) {
 				if(vicepres.matches(Integer.toString(i++))) { //selected vice president
-					client.voteForCandidate(vicepresidentlist.get(i)).getCandidateID();
+					client.voteForCandidate(vicepresidentlist.get(i).getCandidateID());
 				}
 			}
 			
