@@ -161,6 +161,21 @@ public class AnalyzeCampaignServlet extends HttpServlet {
 			option.add(new Option("17", "ARMM").withValues(ARMM));
 			
 			Dilemma dilemma = service.dilemmas(problem);
+			
+			out.println("<html>");
+        	out.println("<head>");
+            out.println("<title>Results</title>");
+       		out.println("</head>");
+           	out.println("<body>");
+       		out.println(dilemma);
+       		out.println("</body>");
+       		out.println("</html>");
+			
+			//request.setAttribute("dilemma", dilemma);
+			
+			//response.setContentType("text/html");
+			//response.setStatus(200);
+			//request.getRequestDispatcher("analyze.jsp").forward(request, response);
         }
     }
 
