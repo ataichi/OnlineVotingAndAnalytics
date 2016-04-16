@@ -10,16 +10,21 @@ Tricia Nieva
 Danica Corpus
 J-jayke Tirados
 
+PPT - [link] (https://github.com/ataichi/OnlineVotingAndAnalytics/blob/master/Online%20Voting%20And%20Analytics.pptx) 
+
 In light of the upcoming presidential elections our group has created a application that caters to the needs of the both the Candidates, News, Voters and possibly the Government. 
 
 Target users
 	
-
  1. Voters
  2. Candidates
 
   
 Using postgresql and tradeoff analytics we plan to create an application that can provide the candidates useful information regarding the current situation he or she is in
+
+PostgreSQL was used to store our user information as well as the different values that are used in our application
+
+Tradeoff analytics was used in obtaining different information based on the raw data that voters provided. Using this feature we were able to extract the information that the our users can use.
 
 Our application will be able to Gather information on the different aspects of an election 
 
@@ -53,6 +58,9 @@ Significance of the application
 
 Our application will be able to deliver real time information on the current standing of the different candidates. We will also be able to give the different candidates information on the different areas such as population, votes per location, Budget and daily updates.
 
+Uniqueness
+
+What is different with our application is that is able to gather the current trends and focus points of the votes as well as the different population in different areas . It can gather information about multiple data as well as present you with an informed choice.
 
 
 

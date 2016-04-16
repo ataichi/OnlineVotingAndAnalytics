@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.PostgreSQLClient;
 import bean.CandidateBean;
+import javax.servlet.http.HttpSession;
+import service.*;
 
 @WebServlet(urlPatterns = {"/LoginCandidateServlet"})
 public class LoginCandidateServlet extends HttpServlet {

@@ -20,6 +20,9 @@ import service.TradeoffAnalyticsConnector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -175,13 +178,13 @@ public class AnalyzeCampaignServlet extends HttpServlet {
 			
 			String jsonstring = dilemma.toString();
 			JSONParser parser = new JSONParser();
-            Object obj = parser.parse(sample);
+            Object obj = parser.parse(jsonstring);
             JSONObject json1 = (JSONObject) obj;
             JSONObject json2 = (JSONObject) json1.get("resolution");
             JSONArray json3 = (JSONArray) json2.get("solutions");
             
             JSONObject json4;
-            String region, status;
+            String region = null, status;
             for(int i=0; i<json3.size(); i++) {
                 json4 = (JSONObject) json3.get(i);
                 region = json4.get("solution_ref").toString();

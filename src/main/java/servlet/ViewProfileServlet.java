@@ -11,7 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import bean.CandidateBean;
 import bean.EducationalBGBean;
 import service.PostgreSQLClient;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import service.*;
+>>>>>>> ffb9085b98495c2361ea44a21f718834ed539cae
 
 @WebServlet(urlPatterns = {"/ViewProfileServlet"})
 public class ViewProfileServlet extends HttpServlet {
